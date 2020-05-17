@@ -41,7 +41,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class,isolation = Isolation.REPEATABLE_READ)
+    @Transactional(rollbackFor = Exception.class,isolation = Isolation.SERIALIZABLE)
     public void updateById(int id,Car car) {
         try{
             car.setId(id);
@@ -64,7 +64,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class,isolation = Isolation.REPEATABLE_READ)
+    @Transactional(rollbackFor = Exception.class,isolation = Isolation.SERIALIZABLE)
     public void validateCarAndUpate(int id, int amount){
         try{
             if(amount<1){
