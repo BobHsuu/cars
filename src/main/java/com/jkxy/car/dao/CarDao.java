@@ -21,7 +21,7 @@ public interface CarDao {
     void deleteById(int id);
 
     @Update("update carMessage set stock=#{stock},carName=#{carName},carType=#{carType},price=#{price},carSeries=#{carSeries} where id = #{id}")
-    void updateById(Car car);
+    void updateById(int id,Car car);
 
     @Insert("insert into carMessage(carName,carType,price,carSeries) values(#{carName},#{carType},#{price},#{carSeries})")
     void insertCar(Car car);

@@ -8,16 +8,17 @@ import com.jkxy.car.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.List;
 
 
 @Service("carService")
 public class CarServiceImpl implements CarService {
-    @Autowired
+    @Resource
     private CarDao carDao;
 
-    @Autowired
+    @Resource
     private CarSellDao carSellDao;
 
     @Override
@@ -41,8 +42,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void updateById(Car car) {
-        carDao.updateById(car);
+    public void updateById(int id,Car car) {
+        car.setId(id);
+        carDao.updateById(id,car);
     }
 
     @Override
@@ -61,7 +63,7 @@ public class CarServiceImpl implements CarService {
             return "库存不足";
         }
         car.setStock(stock-amount);
-        carDao.updateById(car);
+        carDao.updateById(id,car);
 
         //insert sell log
         CarSell carSell = new CarSell();

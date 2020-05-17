@@ -15,7 +15,7 @@ public interface CarService {
 
     void deleteById(int id);
 
-    void updateById(Car car);
+    void updateById(int id,Car car);
 
     void insertCar(Car car);
 
