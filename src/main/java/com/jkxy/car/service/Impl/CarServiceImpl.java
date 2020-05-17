@@ -1,12 +1,12 @@
 package com.jkxy.car.service.Impl;
 
 import com.jkxy.car.dao.CarDao;
-import com.jkxy.car.dao.CarSellDao;
 import com.jkxy.car.pojo.Car;
-import com.jkxy.car.pojo.CarSell;
 import com.jkxy.car.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
@@ -18,8 +18,7 @@ public class CarServiceImpl implements CarService {
     @Resource
     private CarDao carDao;
 
-    @Resource
-    private CarSellDao carSellDao;
+
 
     @Override
     public List<Car> findAll() {
@@ -42,9 +41,14 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class,isolation = Isolation.REPEATABLE_READ)
     public void updateById(int id,Car car) {
-        car.setId(id);
-        carDao.updateById(id,car);
+        try{
+            car.setId(id);
+            carDao.updateById(car);
+        }catch (Exception e){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
     }
 
     @Override
@@ -52,31 +56,31 @@ public class CarServiceImpl implements CarService {
         carDao.insertCar(car);
     }
 
-    @Override
-    public String buyCar(int id, int amount) {
-        if(amount<1){
-            return "购买数量异常";
-        }
-        Car car = carDao.findById(id);
-        int stock  = car.getStock();
-        if(amount>stock){
-            return "库存不足";
-        }
-        car.setStock(stock-amount);
-        carDao.updateById(id,car);
 
-        //insert sell log
-        CarSell carSell = new CarSell();
-        carSell.setCarId(car.getId());
-        carSell.setAmount(amount);
-        carSell.setTradeDate( new Timestamp(System.currentTimeMillis()));
-
-        carSellDao.insertCarSell(carSell);
-        return null;
-    }
 
     @Override
     public List<Car> findByNameWithPage(String name,int from,int pageSize) {
         return carDao.findByNameWithPage(name,from,pageSize);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class,isolation = Isolation.REPEATABLE_READ)
+    public void validateCarAndUpate(int id, int amount){
+        try{
+            if(amount<1){
+                throw new Exception("购买数量异常");
+            }
+            Car car = carDao.findById(id);
+            int stock  = car.getStock();
+            if(amount>stock){
+                throw new Exception("库存不足");
+            }
+            if (amount!=0){
+                car.setStock(stock-amount);
+            }
+            updateById(id,car);
+        }catch (Exception e){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
     }
 }

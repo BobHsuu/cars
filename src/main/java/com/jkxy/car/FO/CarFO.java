@@ -4,9 +4,16 @@ public class CarFO {
     private int id;
     private String carName;
     private Integer from;
-
     private Integer to;
+    private int amount;
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public int getId() {
         return id;

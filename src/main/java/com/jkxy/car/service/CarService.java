@@ -19,7 +19,7 @@ public interface CarService {
 
     void insertCar(Car car);
 
-    String buyCar(int id,int amount);
-
     List<Car> findByNameWithPage(String name,int from,int pageSize);
+
+    void validateCarAndUpate(int id, int amount);
 }

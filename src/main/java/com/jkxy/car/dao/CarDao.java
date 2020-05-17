@@ -2,6 +2,7 @@ package com.jkxy.car.dao;
 
 import com.jkxy.car.pojo.Car;
 import org.apache.ibatis.annotations.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,8 +21,9 @@ public interface CarDao {
     @Delete("delete from carMessage where id = #{id}")
     void deleteById(int id);
 
+    @Transactional
     @Update("update carMessage set stock=#{stock},carName=#{carName},carType=#{carType},price=#{price},carSeries=#{carSeries} where id = #{id}")
-    void updateById(int id,Car car);
+    boolean updateById(Car car);
 
     @Insert("insert into carMessage(carName,carType,price,carSeries) values(#{carName},#{carType},#{price},#{carSeries})")
     void insertCar(Car car);

@@ -8,7 +8,6 @@ public class Car {
     private String price;
     private String carSeries;
     private int stock;
-    private int amount;
 
     public int getId() {
         return id;
@@ -58,24 +57,6 @@ public class Car {
         this.stock = stock;
     }
 
-    public int getAmount() {
-        return amount;
-    }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", carName='" + carName + '\'' +
-                ", carType='" + carType + '\'' +
-                ", price='" + price + '\'' +
-                ", carSeries='" + carSeries + '\'' +
-                ", stock='" + stock + '\'' +
-                ", amount='" + amount + '\'' +
-                '}';
-    }
 }

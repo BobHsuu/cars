@@ -74,9 +74,15 @@ public class CarController {
      * @return
      */
     @PutMapping("car/{id}")
-    public JSONResult updateById(@PathVariable int id,Car car) {
-        carService.updateById(id,car);
-        return JSONResult.ok();
+    public JSONResult updateById(@PathVariable int id,CarFO carFo) {
+        try{
+            carService.validateCarAndUpate(id, carFo.getAmount());
+            return JSONResult.ok();
+        }
+        catch (Exception e){
+            return  JSONResult.errorException(e.getMessage());
+        }
+
     }
 
     /**
@@ -92,17 +98,7 @@ public class CarController {
     }
 
 
-//    /**
-//     * 买车
-//     *
-//     * @param car
-//     * @return
-//     */
-//    @PostMapping("buyCar")
-//    public JSONResult buyCar(Car car) {
-//        String errorMsg = carService.buyCar(car.getId(), car.getAmount());
-//        return JSONResult.ok(errorMsg);
-//    }
+
 
 
 
