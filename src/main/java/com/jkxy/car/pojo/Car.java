@@ -1,4 +1,4 @@
-package com.jkxy.car.api.pojo;
+package com.jkxy.car.pojo;
 
 
 public class Car {

@@ -1,10 +1,10 @@
-package com.jkxy.car.api.service.Impl;
+package com.jkxy.car.service.Impl;
 
-import com.jkxy.car.api.dao.CarDao;
-import com.jkxy.car.api.dao.CarSellDao;
-import com.jkxy.car.api.pojo.Car;
-import com.jkxy.car.api.pojo.CarSell;
-import com.jkxy.car.api.service.CarService;
+import com.jkxy.car.dao.CarDao;
+import com.jkxy.car.dao.CarSellDao;
+import com.jkxy.car.pojo.Car;
+import com.jkxy.car.pojo.CarSell;
+import com.jkxy.car.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

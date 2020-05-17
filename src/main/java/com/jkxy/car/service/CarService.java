@@ -1,6 +1,6 @@
-package com.jkxy.car.api.service;
+package com.jkxy.car.service;
 
-import com.jkxy.car.api.pojo.Car;
+import com.jkxy.car.pojo.Car;
 
 import java.util.List;
 

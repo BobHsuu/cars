@@ -1,10 +1,9 @@
-package com.jkxy.car.api.controller;
+package com.jkxy.car.controller;
 
-import com.jkxy.car.api.pojo.Car;
-import com.jkxy.car.api.service.CarService;
-import com.jkxy.car.api.utils.JSONResult;
+import com.jkxy.car.pojo.Car;
+import com.jkxy.car.service.CarService;
+import com.jkxy.car.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

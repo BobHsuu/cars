@@ -1,6 +1,6 @@
-package com.jkxy.car.api.dao;
+package com.jkxy.car.dao;
 
-import com.jkxy.car.api.pojo.Car;
+import com.jkxy.car.pojo.Car;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -1,7 +1,6 @@
-package com.jkxy.car.api.dao;
+package com.jkxy.car.dao;
 
-import com.jkxy.car.api.pojo.CarSell;
-import org.apache.ibatis.annotations.*;
+import com.jkxy.car.pojo.CarSell;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 

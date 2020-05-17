@@ -1,4 +1,4 @@
-package com.jkxy.car.api;
+package com.jkxy.car;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
