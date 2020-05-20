@@ -41,14 +41,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class,isolation = Isolation.SERIALIZABLE)
     public void updateById(int id,Car car) {
-        try{
-            car.setId(id);
-            carDao.updateById(car);
-        }catch (Exception e){
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-        }
+        car.setId(id);
+        carDao.updateById(car);
     }
 
     @Override
@@ -64,8 +59,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class,isolation = Isolation.SERIALIZABLE)
-    public void validateCarAndUpate(int id, int amount) throws Exception{
+    @Transactional(rollbackFor = Exception.class)
+    public void validateCarAndUpate(int id, int amount)  throws Exception{
         try{
             if(amount<1){
                 throw new Exception("购买数量异常");

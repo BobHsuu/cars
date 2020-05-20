@@ -12,7 +12,7 @@ public interface CarDao {
     @Select("select * from carMessage")
     List<Car> findAll();
 
-    @Select("select * from carMessage where id = #{id}")
+    @Select("select * from carMessage where id = #{id}  for update")
     Car findById(int id);
 
     @Select("select * from carMessage where carName = #{carName}")
@@ -21,7 +21,6 @@ public interface CarDao {
     @Delete("delete from carMessage where id = #{id}")
     void deleteById(int id);
 
-    @Transactional
     @Update("update carMessage set stock=#{stock},carName=#{carName},carType=#{carType},price=#{price},carSeries=#{carSeries} where id = #{id}")
     boolean updateById(Car car);
 
