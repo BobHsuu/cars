@@ -74,9 +74,9 @@ public class CarController {
      * @return
      */
     @PutMapping("car/{id}")
-    public JSONResult updateById(@PathVariable int id,CarFO carFo) {
+    public JSONResult updateById(@PathVariable int id,Car carFo) {
         try{
-            carService.validateCarAndUpate(id, carFo.getAmount());
+            carService.updateById(id, carFo);
             return JSONResult.ok();
         }
         catch (Exception e){
@@ -84,6 +84,24 @@ public class CarController {
         }
 
     }
+
+    /**
+     * 通过id更新全部信息
+     *
+     * @return
+     */
+    @PatchMapping ("car/{id}")
+    public JSONResult patchById(@PathVariable int id,CarFO carFo){
+        try{
+            carService.validateCarAndUpate(id, carFo.getAmount()) ;
+            return JSONResult.ok();
+        }
+        catch (Exception e){
+            return  JSONResult.errorException(e.getMessage());
+        }
+
+    }
+
 
     /**
      * 增加

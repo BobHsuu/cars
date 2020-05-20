@@ -65,7 +65,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional(rollbackFor = Exception.class,isolation = Isolation.SERIALIZABLE)
-    public void validateCarAndUpate(int id, int amount){
+    public void validateCarAndUpate(int id, int amount) throws Exception{
         try{
             if(amount<1){
                 throw new Exception("购买数量异常");
@@ -81,6 +81,7 @@ public class CarServiceImpl implements CarService {
             updateById(id,car);
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            throw  e;
         }
     }
 }

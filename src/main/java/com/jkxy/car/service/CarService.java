@@ -21,5 +21,5 @@ public interface CarService {
 
     List<Car> findByNameWithPage(String name,int from,int pageSize);
 
-    void validateCarAndUpate(int id, int amount);
+    void validateCarAndUpate(int id, int amount) throws Exception;
 }
